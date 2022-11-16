@@ -1,17 +1,19 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
+from rest_framework import routers
 
+router = routers.SimpleRouter()
+router.register(r'genre', GenreViewSet)
+router.register(r'artist', ArtistViewSet)
+router.register(r'album', AlbumViewSet)
+router.register(r'playlist', PlaylistViewSet)
 
 
 urlpatterns = [
-    path('album/', AlbumAPIView.as_view()),
-    path('album/<str:pk>/', AlbumAPIView.as_view()), # to capture our ids
+ 
     path('song/', SongAPIView.as_view()),
     path('song/<str:pk>/', SongAPIView.as_view()),
-    path('genre/', GenreAPIView.as_view()),
-    path('genre/<str:pk>/', GenreAPIView.as_view()),
-    path('artist/', ArtistAPIView.as_view()),
-    path('artist/<str:pk>/', ArtistAPIView.as_view()),
-    path('playlist/', PlaylistAPIView.as_view()),
-    path('playlist/<str:pk>/', PlaylistAPIView.as_view())
+    path('', include(router.urls))
 ]
+
+   
