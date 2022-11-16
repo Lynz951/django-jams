@@ -16,7 +16,13 @@ class Album(models.Model):
     title = models.CharField(max_length=500)
     release_date = models.DateField()
 
-# class Genre(models.Model):
-#     genre = models.CharField(max_length=100)
+class Genre(models.Model):
+    genre = models.CharField(max_length=100)
 
+class Artist(models.Model):
+    name = models.CharField(max_length=200)
+    bio = models.CharField(max_length=1000)
+
+class Playlist(models.Model):
+    title = models.CharField(max_length=100)
 
