@@ -10,7 +10,7 @@ from rest_framework.response import Response
 class AlbumAPIView(APIView):
     def get_object(self, pk):
         try:
-            return Album.ojects.get(pk=pk)
+            return Album.objects.get(pk=pk)
         except Album.DoesNotExist:
             raise Http404
 
@@ -33,7 +33,7 @@ class AlbumAPIView(APIView):
         serializer = AlbumSerializer(data=data)
 
         # Check if data is valid
-        serializer.is_valid(raised_exception=True) 
+        serializer.is_valid(raise_exception=True) 
 
         # Save data
         serializer.save() 
@@ -48,6 +48,24 @@ class AlbumAPIView(APIView):
 
         return response
 
+        # Put request
+
+    def put(self, request, pk=None, format=None):
+        album_to_update = Album.objects.get(pk=pk)
+        data = request.data
+        serializer = AlbumSerializer(instance=album_to_update, data=data, partial=True)
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        response = Response()
+
+        response.data = {
+            'message': 'Album Updated Successfully',
+            'data': serializer.data
+        }
+
+        return response
 
 # class GenreAPIView(APIView)
 

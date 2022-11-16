@@ -3,7 +3,7 @@ from .views import *
 
 
 
-urlpatterns = {
+urlpatterns = [
     path('album/', AlbumAPIView.as_view()),
     path('album/<str:pk>/', AlbumAPIView.as_view()) # to capture our ids
-}
+]
