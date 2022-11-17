@@ -6,6 +6,8 @@ from .models import *
 from .serializers import *
 from rest_framework.response import Response
 
+import csv
+
 # Create your views here.
 
 class GenreViewSet(ModelViewSet):
@@ -107,7 +109,22 @@ class SongAPIView(APIView):
         return response
 
 
+# def csv_database_write(request):
 
+#     # Get all data from UserDetail Databse Table
+#     data = [i.json() for i in MenuItems.objects.all()]
+
+#     # Create the HttpResponse object with the appropriate CSV header.
+#     response = HttpResponse(content_type='text/csv')
+#     response['Content-Disposition'] = 'attachment; filename="csv_database_write.csv"'
+
+#     writer = csv.writer(response)
+#     writer.writerow(['id', 'title', 'description', 'pirce', 'category id', 'diet id'])
+
+#     for item in data:
+#         writer.writerow([item.get('id'), item.get('title'), item.get('description'), item.get('price'), item.get('category_id'), item.get('diet_id')])
+
+#     return 
 
 
 

@@ -27,6 +27,14 @@ class Song(models.Model):
     playlist = models.ManyToManyField('Playlist')
 
 
+    def __str__(self):
+        return self.title + ": " + self.genre + ". By:" + self.artist
+
+ 
+
+   
+
+
 
 
 
